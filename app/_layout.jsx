@@ -5,7 +5,7 @@ export default function RootLayout() {
   return (
     <Stack>
       <Stack.Screen name="index" options={{ title: "Scanner" }} />
-      <Stack.Screen name="book-details" options={{ title: "Book details" }} />
+      <Stack.Screen name="[isbn]" options={{ title: "Book details" }} />
     </Stack>
   );
 }

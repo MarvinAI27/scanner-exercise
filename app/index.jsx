@@ -1,9 +1,13 @@
-import { Link } from "expo-router";
+import { useRouter } from "expo-router";
 import { Text, View, StyleSheet, Button } from "react-native";
 import { CameraView, useCameraPermissions } from "expo-camera";
+import { useState } from "react";
 
 export default function Index() {
+  const router = useRouter();
   const [permission, requestPermission] = useCameraPermissions();
+  const [isbn, setIsbn] = useState(null);
+
   if (!permission) {
     // Camera permissions are still loading.
     return <View />;
@@ -16,17 +20,26 @@ export default function Index() {
         <Text style={styles.message}>
           We need your permission to show the camera
         </Text>
-        <Button onPress={requestPermission} title="grant permission" />
+        <Button onPress={requestPermission} title="Grant Permission" />
       </View>
     );
   }
+
   return (
     <View style={styles.container}>
-      <CameraView style={styles.camera}></CameraView>
-      <Link href="book-details">Go to Details</Link>
+      <CameraView
+        style={styles.camera}
+        onBarcodeScanned={(scanningResult) => {
+          if (!isbn) {
+            setIsbn(scanningResult.data);
+            router.push(`/${scanningResult.data}`); // Automatisch weiterleiten
+          }
+        }}
+      />
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
