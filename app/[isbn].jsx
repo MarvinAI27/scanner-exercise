@@ -52,7 +52,7 @@ export default function BookDetails() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>
-        {bookDetails.details.title} , {bookDetails.details.publishers}
+        {bookDetails.title} , {bookDetails.publishers.join(",")}
       </Text>
 
       <Image

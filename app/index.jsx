@@ -32,7 +32,7 @@ export default function Index() {
         onBarcodeScanned={(scanningResult) => {
           if (!isbn) {
             setIsbn(scanningResult.data);
-            router.push(`/${scanningResult.data}`); // Automatisch weiterleiten
+            router.push(`/${scanningResult.data}`);
           }
         }}
       />
