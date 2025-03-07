@@ -36,6 +36,12 @@ export default function Index() {
           }
         }}
       />
+      <Button
+        title="Reset"
+        onPress={() => {
+          setIsbn(null);
+        }}
+      />
     </View>
   );
 }
